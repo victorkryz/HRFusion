@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="victor.kryz.hrfusion">
+
+       <application
+        android:name="victor.kryz.hrfusion.app.HRFusion"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_hr_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name="victor.kryz.hrfusion.views.regions.ListActivity"
+            android:label="@string/title_regions_list"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="victor.kryz.hrfusion.views.countries.ListActivity"
+            android:label="@string/title_countries_list"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="victor.kryz.hrfusion.views.locations.ListActivity"
+            android:label="@string/title_locations_list"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="victor.kryz.hrfusion.views.departments.ListActivity"
+            android:label="@string/title_departments_list"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="victor.kryz.hrfusion.views.employees.ListActivity"
+            android:label="@string/title_employees_list"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="victor.kryz.hrfusion.views.employees.DetailsActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="victor.kryz.hrfusion.views.base.DetailsActivity"
+            android:label="@string/title_item_detail"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="victor.kryz.hrfusion.TitleActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

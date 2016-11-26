@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+                                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                                        xmlns:tools="http://schemas.android.com/tools"
+                                        android:id="@+id/item_list"
+                                        android:name="vks.net.hrfusion.employee.DetailFragment"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginLeft="16dp"
+                                        android:layout_marginRight="16dp"
+                                        app:layoutManager="LinearLayoutManager"
+                                        tools:context="victor.kryz.hrfusion.views.employees.DetailsActivity"
+                                        tools:listitem="@layout/job_history_list_item" />
+
+

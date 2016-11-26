@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                xmlns:tools="http://schemas.android.com/tools"
+                tools:context="victor.kryz.hrfusion.views.employees.DetailsFragment">
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tableSV">
+
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/tableLayout"
+            android:layout_above="@+id/item_detail"
+            android:layout_alignParentStart="true">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/table_row_padding_left_right"
+                android:paddingRight="@dimen/table_row_padding_left_right"
+                android:paddingBottom="@dimen/table_row_padding_top_bottom"
+                android:paddingTop="@dimen/table_row_padding_top_bottom">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    style="@style/DetailTable.Title"
+                    android:text="@string/first_name"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/first_name"
+                    android:layout_column="2"
+                    android:layout_marginLeft="15dp"
+                    style="@style/DetailTable.Value"
+                    android:text="@string/sample_text"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/light_gray"
+                android:paddingLeft="@dimen/table_row_padding_left_right"
+                android:paddingRight="@dimen/table_row_padding_left_right"
+                android:paddingBottom="@dimen/table_row_padding_top_bottom"
+                android:paddingTop="@dimen/table_row_padding_top_bottom">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    style="@style/DetailTable.Title"
+                    android:text="@string/last_name"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/last_name"
+                    android:layout_column="2"
+                    android:layout_marginLeft="15dp"
+                    style="@style/DetailTable.Value"
+                    android:text="@string/sample_text"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/table_row_padding_left_right"
+                android:paddingRight="@dimen/table_row_padding_left_right"
+                android:paddingBottom="@dimen/table_row_padding_top_bottom"
+                android:paddingTop="@dimen/table_row_padding_top_bottom">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    style="@style/DetailTable.Title"
+                    android:text="@string/job_title"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/jobTitle"
+                    android:layout_column="2"
+                    android:layout_marginLeft="15dp"
+                    style="@style/DetailTable.Value"
+                    android:text="@string/sample_text"/>
+
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/light_gray"
+                android:paddingLeft="@dimen/table_row_padding_left_right"
+                android:paddingRight="@dimen/table_row_padding_left_right"
+                android:paddingBottom="@dimen/table_row_padding_top_bottom"
+                android:paddingTop="@dimen/table_row_padding_top_bottom">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    style="@style/DetailTable.Title"
+                    android:text="@string/role_title"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/role"
+                    android:layout_column="2"
+                    android:layout_marginLeft="15dp"
+                    style="@style/DetailTable.Value"
+                    android:text="@string/sample_text"/>
+
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/table_row_padding_left_right"
+                android:paddingRight="@dimen/table_row_padding_left_right"
+                android:paddingBottom="@dimen/table_row_padding_top_bottom"
+                android:paddingTop="@dimen/table_row_padding_top_bottom">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    style="@style/DetailTable.Title"
+                    android:text="@string/email_title"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/email"
+                    android:layout_column="2"
+                    android:layout_marginLeft="15dp"
+                    style="@style/DetailTable.Value"
+                    android:text="@string/sample_text"/>
+
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/light_gray"
+                android:paddingLeft="@dimen/table_row_padding_left_right"
+                android:paddingRight="@dimen/table_row_padding_left_right"
+                android:paddingBottom="@dimen/table_row_padding_top_bottom"
+                android:paddingTop="@dimen/table_row_padding_top_bottom">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    style="@style/DetailTable.Title"
+                    android:text="@string/pnone_title"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/phone"
+                    android:layout_column="2"
+                    android:layout_marginLeft="15dp"
+                    style="@style/DetailTable.Value"
+                    android:text="@string/sample_text"/>
+
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/table_row_padding_left_right"
+                android:paddingRight="@dimen/table_row_padding_left_right"
+                android:paddingBottom="@dimen/table_row_padding_top_bottom"
+                android:paddingTop="@dimen/table_row_padding_top_bottom">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    style="@style/DetailTable.Title"
+                    android:text="@string/hire_date_title"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/hire_date"
+                    android:layout_column="2"
+                    android:layout_marginLeft="15dp"
+                    style="@style/DetailTable.Value"
+                    android:text="@string/sample_text"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/light_gray"
+                android:paddingLeft="@dimen/table_row_padding_left_right"
+                android:paddingRight="@dimen/table_row_padding_left_right"
+                android:paddingBottom="@dimen/table_row_padding_top_bottom"
+                android:paddingTop="@dimen/table_row_padding_top_bottom">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    style="@style/DetailTable.Title"
+                    android:text="@string/salary_title"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/salary"
+                    android:layout_column="2"
+                    android:layout_marginLeft="15dp"
+                    style="@style/DetailTable.Value"
+                    android:text="@string/sample_text"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/table_row_padding_left_right"
+                android:paddingRight="@dimen/table_row_padding_left_right"
+                android:paddingBottom="@dimen/table_row_padding_top_bottom"
+                android:paddingTop="@dimen/table_row_padding_top_bottom">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    style="@style/DetailTable.Title"
+                    android:text="@string/comission_title"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/comission"
+                    android:layout_column="2"
+                    android:layout_marginLeft="15dp"
+                    style="@style/DetailTable.Value"
+                    android:text="@string/sample_text"/>
+
+            </TableRow>
+
+        </TableLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+
+</RelativeLayout>
+
