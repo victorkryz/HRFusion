@@ -27,7 +27,7 @@ namespace Sqlt
             Poco::Data::SQLite::Connector::registerConnector();
 
             SessionSp spSession(std::make_shared<Session>("SQLite", strDbFile));;
-            return std::move(spSession);
+            return spSession;
         }
     }
 }
@@ -45,6 +45,6 @@ std::string getDbFile(JNIEnv *env, jobject obj)
     jstring jstr = jniCall<jstring>(env, [&]()->jstring
         {return (jstring)env->GetObjectField(obj, getDbFileField(env, obj));});
 
-    return std::move(fromJStr(env, jstr));
+    return fromJStr(env, jstr);
 }
 

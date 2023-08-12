@@ -35,7 +35,7 @@ inline T jniCall(JNIEnv* env, std::function<T(void)> fnc, std::string outerFuncN
         throw ReflectionException(strMsg);
     }
 
-    return std::move(res);
+    return res;
 }
 
 class ClassReflector
