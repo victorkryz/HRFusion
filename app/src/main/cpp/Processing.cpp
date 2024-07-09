@@ -42,17 +42,10 @@ Java_victor_kryz_hrfusion_hrdb_sqlt_SessionImpl_getRegionsNt(JNIEnv* env, jobjec
             spSession->close();
         });
 
-        typedef Poco::Tuple<int, std::string> Region;
-        typedef std::vector<Region> Regions;
-        Regions regions;
-
-//        const std::string strStmt("SELECT REGION_ID, REGION_NAME FROM REGIONS ORDER BY REGION_NAME");
-        const std::string strStmt("SELECT * FROM REGIONS");
+        const std::string strStmt("SELECT REGION_ID, REGION_NAME FROM REGIONS ORDER BY REGION_NAME");
         Statement select(*spSession);
         reset(select);
         select << strStmt;
-//        select << strStmt,
-//                    into(regions), now;
         select.execute();
 
         SelectionReader<HrItem<int>> sr(select, 2,
@@ -63,13 +56,6 @@ Java_victor_kryz_hrfusion_hrdb_sqlt_SessionImpl_getRegionsNt(JNIEnv* env, jobjec
 
         HrItems<int> items;
         sr.read(items);
-
-//        for (const auto& item : regions)
-//        {
-//            auto& target = *(items.insert(items.end(), HrItem<int>()));
-//            target.id = item.get<0>();
-//            target.name = item.get<1>();
-//        }
 
         scope.enclose();
 
