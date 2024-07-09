@@ -102,6 +102,15 @@ public abstract class BaseActivity extends AppCompatActivity
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if ( mProgressDlg != null) {
+             mProgressDlg.dismiss();
+             mProgressDlg = null;
+        }
+    }
+
     /**
      * Launches procedure of fetching data
      * and reflecting them in asynchronous way
@@ -110,7 +119,7 @@ public abstract class BaseActivity extends AppCompatActivity
     {
         final String strTitle = getResources().getString(R.string.app_name);
         final String strMsg = getResources().getString(R.string.data_is_loading);
-        mProgressDlg = ProgressDialog.show(this, strTitle, strMsg, false, false);
+//        mProgressDlg = ProgressDialog.show(this, strTitle, strMsg, false, false);
 
         Thread th = new Thread(new HrItemsSelector(mItemId));
         th.start();

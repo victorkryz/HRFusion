@@ -8,33 +8,33 @@ project.archivesBaseName = APK_NAME + "-" + VERSION_NAME;
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    buildToolsVersion '29.0.3'
     defaultConfig {
         applicationId "HRFusion"
         minSdkVersion 23
-        targetSdkVersion 24
+        targetSdkVersion 25
         versionCode VERSION_CODE
         versionName VERSION_NAME
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         externalNativeBuild {
             cmake {
-                arguments '-DANDROID_STL=gnustl_shared'
+                arguments '-DANDROID_STL=c++_shared'
                 cppFlags.add("-std=c++11 -frtti -fexceptions")
             }
         }
 
         ndk {
-            abiFilters 'x86_64', 'armeabi'
+            abiFilters 'x86_64', 'armeabi-v7a', 'x86', 'arm64-v8a'
         }
     }
 
     buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            applicationIdSuffix ".release"
-        }
+//        release {
+//            minifyEnabled false
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            applicationIdSuffix ".release"
+//        }
         debug {
             applicationIdSuffix ".debug"
         }
@@ -47,13 +47,13 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.0.1'
-    compile 'com.android.support:design:25.0.1'
-    compile 'com.android.support:support-v4:25.0.1'
-    compile 'com.android.support:recyclerview-v7:25.0.1'
-    testCompile 'junit:junit:4.12'
+    implementation 'com.android.support:appcompat-v7:25.0.1'
+    implementation 'com.android.support:design:25.0.1'
+    implementation 'com.android.support:support-v4:25.0.1'
+    implementation 'com.android.support:recyclerview-v7:25.0.1'
+    testImplementation 'junit:junit:4.13'
 }

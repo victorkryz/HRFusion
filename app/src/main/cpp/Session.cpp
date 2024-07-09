@@ -8,6 +8,7 @@
 #include <Poco/Data/RecordSet.h>
 #include "common.h"
 #include "Session.h"
+#include "Poco/Data/Session.h"
 #include "Poco/Data/SQLite/Connector.h"
 #include "Poco/Data/SQLite/SQLiteException.h"
 #include "Tools.h"
@@ -26,7 +27,8 @@ namespace Sqlt
 
             Poco::Data::SQLite::Connector::registerConnector();
 
-            SessionSp spSession(std::make_shared<Session>("SQLite", strDbFile));;
+            SessionSp spSession(std::make_shared<Session>("SQLite", strDbFile));
+//            spSession->setProperty("storage", std::string("deque"));
             return std::move(spSession);
         }
     }
@@ -45,6 +47,6 @@ std::string getDbFile(JNIEnv *env, jobject obj)
     jstring jstr = jniCall<jstring>(env, [&]()->jstring
         {return (jstring)env->GetObjectField(obj, getDbFileField(env, obj));});
 
-    return std::move(fromJStr(env, jstr));
+    return fromJStr(env, jstr);
 }
 

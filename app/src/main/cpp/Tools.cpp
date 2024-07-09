@@ -12,7 +12,7 @@
 #include "Poco/Data/SQLite/SQLiteException.h"
 
 std::string fromInt(int intFrom){
-    return std::move(Poco::format("%i", intFrom));
+    return Poco::format("%i", intFrom);
 }
 
 int fromString(const std::string& strFrom)
@@ -33,7 +33,7 @@ std::string fromJStr(JNIEnv* env, jstring jstr)
             env->ReleaseStringUTFChars(jstr, p);
         }
     }
-    return std::move(str);
+    return str;
 }
 
 

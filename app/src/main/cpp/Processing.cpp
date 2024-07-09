@@ -34,16 +34,25 @@ Java_victor_kryz_hrfusion_hrdb_sqlt_SessionImpl_getRegionsNt(JNIEnv* env, jobjec
 
     try
     {
+        const std::string dbFile = getDbFile(env, instance);
         Sqlt::SessionSp spSession(
-                Sqlt::Utils::openSession(getDbFile(env, instance)));
+                Sqlt::Utils::openSession(dbFile));
 
         scope_t<> scope([spSession](bool) noexcept {
             spSession->close();
         });
 
-        const std::string strStmt("SELECT REGION_ID, REGION_NAME FROM REGIONS ORDER BY REGION_NAME");
+        typedef Poco::Tuple<int, std::string> Region;
+        typedef std::vector<Region> Regions;
+        Regions regions;
+
+//        const std::string strStmt("SELECT REGION_ID, REGION_NAME FROM REGIONS ORDER BY REGION_NAME");
+        const std::string strStmt("SELECT * FROM REGIONS");
         Statement select(*spSession);
+        reset(select);
         select << strStmt;
+//        select << strStmt,
+//                    into(regions), now;
         select.execute();
 
         SelectionReader<HrItem<int>> sr(select, 2,
@@ -54,6 +63,13 @@ Java_victor_kryz_hrfusion_hrdb_sqlt_SessionImpl_getRegionsNt(JNIEnv* env, jobjec
 
         HrItems<int> items;
         sr.read(items);
+
+//        for (const auto& item : regions)
+//        {
+//            auto& target = *(items.insert(items.end(), HrItem<int>()));
+//            target.id = item.get<0>();
+//            target.name = item.get<1>();
+//        }
 
         scope.enclose();
 
@@ -101,6 +117,7 @@ Java_victor_kryz_hrfusion_hrdb_sqlt_SessionImpl_getCountriesNt(JNIEnv *env, jobj
                 fromJStr(env, jstrRegionId)));
 
         Statement select(*spSession);
+        reset(select);
         const std::string strStmt("SELECT COUNTRY_ID, COUNTRY_NAME FROM COUNTRIES WHERE REGION_ID = ? ORDER BY COUNTRY_NAME");
         select << strStmt, use(regionId);
         select.execute();
@@ -158,6 +175,7 @@ Java_victor_kryz_hrfusion_hrdb_sqlt_SessionImpl_getLocationsNt(JNIEnv *env, jobj
         std::string strCountryId(fromJStr(env, jstrCountryId));
 
         Statement select(*spSession);
+        reset(select);
         const std::string strStmt("SELECT LOCATION_ID, CITY, STATE_PROVINCE, STREET_ADDRESS, POSTAL_CODE  FROM LOCATIONS WHERE COUNTRY_ID = ? ORDER BY CITY");
         select << strStmt, use(strCountryId);
         select.execute();
@@ -221,6 +239,7 @@ Java_victor_kryz_hrfusion_hrdb_sqlt_SessionImpl_getDepartmentsNt(JNIEnv *env, jo
         int locationId(fromString(fromJStr(env, jstrLocationId)));
 
         Statement select(*spSession);
+        reset(select);
         const std::string strStmt("SELECT DEPARTMENT_ID, DEPARTMENT_NAME , MANAGER_ID FROM DEPARTMENTS WHERE LOCATION_ID = ? ORDER BY DEPARTMENT_NAME");
         select << strStmt, use(locationId);
         select.execute();
@@ -281,6 +300,7 @@ Java_victor_kryz_hrfusion_hrdb_sqlt_SessionImpl_getEmployeesNt(JNIEnv *env, jobj
         int departmentId(fromString(fromJStr(env, jstrDepartmentId)));
 
         Statement select(*spSession);
+        reset(select);
         const std::string strStmt("SELECT DISTINCT A.EMPLOYEE_ID, A.FIRST_NAME, A.LAST_NAME, A.EMAIL, A.PHONE_NUMBER, A.HIRE_DATE," \
                                         " A.JOB_ID, j.JOB_TITLE, A.SALARY, A.COMMISSION_PCT,"\
                                         " CASE WHEN B.MANAGER_ID IS NOT NULL THEN 1 ELSE 0 END AS IS_MNGR"\
@@ -353,6 +373,7 @@ Java_victor_kryz_hrfusion_hrdb_sqlt_SessionImpl_getJobHistoryNt(JNIEnv *env, job
         std::string strEmloyeeId(fromJStr(env, jstrEmloyeeId));
 
         Statement select(*spSession);
+        reset(select);
 
         const std::string strStmt("SELECT JOB_ID, J.JOB_TITLE, J.MAX_SALARY, J.MAX_SALARY, DEPARTMENT_ID, D.DEPARTMENT_NAME, JH.START_DATE, JH.END_DATE"\
                                           " FROM JOB_HISTORY JH LEFT JOIN JOBS J USING (JOB_ID)"\

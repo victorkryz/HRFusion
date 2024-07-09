@@ -34,7 +34,7 @@ public class LibsLoader {
 */
 
         try {
-                System.loadLibrary("gnustl_shared");
+//                System.loadLibrary("gnustl_shared");
                 System.loadLibrary("log");
                 System.loadLibrary(composeLibName("PocoFoundation"));
                 System.loadLibrary(composeLibName("PocoXML"));

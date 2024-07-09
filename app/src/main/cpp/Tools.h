@@ -18,10 +18,10 @@ std::string fromJStr(JNIEnv* env, jstring jstr);
 template <typename T> std::string toString(const T& src);
 
 template <> inline std::string toString(const int& src) {
-    return std::move(fromInt(src));
+    return fromInt(src);
 }
 template <> inline std::string toString(const std::string& src) {
-    return std::move(std::string(src));
+    return std::string(src);
 }
 
 void simulateException(JNIEnv* env, const std::string& msg, const char* exceptionClass = nullptr);
