@@ -117,10 +117,6 @@ public abstract class BaseActivity extends AppCompatActivity
      */
     public void refreshAsynch()
     {
-        final String strTitle = getResources().getString(R.string.app_name);
-        final String strMsg = getResources().getString(R.string.data_is_loading);
-//        mProgressDlg = ProgressDialog.show(this, strTitle, strMsg, false, false);
-
         Thread th = new Thread(new HrItemsSelector(mItemId));
         th.start();
     }

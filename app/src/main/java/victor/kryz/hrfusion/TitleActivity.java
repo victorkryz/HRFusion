@@ -42,7 +42,7 @@ public class TitleActivity extends AppCompatActivity
                     public void run()
                     {
                         Bundle args = new Bundle();
-                        args.putInt(ArgsKeys.ITEM_ID, 0);
+                        args.putString(ArgsKeys.ITEM_ID, "");
                         Intent intent = new Intent(getActivity(), ListActivity.class);
                         intent.putExtras(args);
                         startActivity(intent, args);
