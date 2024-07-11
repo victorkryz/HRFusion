@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 String APK_NAME = "HRFusion"
 int VERSION_CODE = 1
-String VERSION_NAME = "1.0"
+String VERSION_NAME = "1.1"
 
 project.archivesBaseName = APK_NAME + "-" + VERSION_NAME;
 
