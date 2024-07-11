@@ -19,14 +19,13 @@ This one is produced by the utility [*"HRToSQLite"*](https://github.com/victorkr
 
 #### Built with:
 
-- Android Studio 2.2.2
-    - SDK (Build Tools 25)
-    - NDK r13
-    - JDK 1.8
+- Android Studio 4.0
+    - SDK (Build Tools 35)
+    - NDK 21.2.6472646
 - CMake (External Build) for C++ part
 - *HRFusion.so* is built with: 
     - cpp flags - *'-std=c++11 -frtti -fexceptions'*
-    - stl type - *'gnustl_shared'*
+    - stl type - *'c++_shared'*
 
 #### POCO libs integration:
 
@@ -72,20 +71,13 @@ To make it buildable, do the next steps:
            |-- ...
 
        ```
-    In this app are used the libraries built on NDK-toolchain with  cpp flags: *'-std=c++11 -frtti -fexceptions'*
-    linked with stl type: *'gnustl_shared'*
-    (see [*POCO C++ Libraries Android Platform Notes*](https://www.appinf.com/docs/poco/99300-AndroidPlatformNotes.html))
-
-
-
+    
 #### Testing:
 
  - JUnit tests are provided for all jni-calls against to HRFusion.so;
  - ReadHREntitiesFixture - the single fixture aggregates all test unit calls, to launch them in 'batch mode';
 
- Tested on abi types '*armeabi*', '*x86_64*'.
-
-
+ 
 #### Screenshots
 -----------------
 
