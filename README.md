@@ -3,14 +3,14 @@
 
 #### Motivations:
 
-- Researching POCO C++ Libraries on Android platform.
+- Researching [*POCO C++ Libraries*](https://pocoproject.org/index.html) on Android platform.
 
 #### About
 
 In spite of Android SDK provides built-in API for operating with SQLite,
 the aim of this app is an integration of POCO libs and using
 POCO's API to access to SQLite database
-(see [*"POCO C++ Libraries Android Platform Notes"*](https://www.appinf.com/docs/poco/99300-AndroidPlatformNotes.html)).
+(see [*"POCO C++ Libraries Android Platform Notes"*](https://docs.pocoproject.org/pro/99300-AndroidPlatformNotes.html)).
 
 
 As a database, there's used a reflection of Oracle Database 'HR' sample schema ("hr.db" file provided in "assets" folder).  
@@ -21,16 +21,16 @@ This one is produced by the utility [*"HRToSQLite"*](https://github.com/victorkr
 
 - Android Studio 4.0
     - SDK (Build Tools 35)
-    - NDK 21.2.6472646
+    - NDK r26d
 - CMake (External Build) for C++ part
 - *HRFusion.so* is built with: 
-    - cpp flags - *'-std=c++11 -frtti -fexceptions'*
+    - cpp flags - *'-std=c++17 -frtti -fexceptions'*
     - stl type - *'c++_shared'*
 
 #### POCO libs integration:
 
-This project uses POCO LIBS 1.7.5
-([Download | POCO C++ Libraries ](https://pocoproject.org/download/index.html))
+This project uses POCO LIBS 1.13.3.
+([Download | POCO C++ Libraries ](https://github.com/pocoproject/poco))
 
 To make it buildable, do the next steps:
 
