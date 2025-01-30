@@ -1,4 +1,14 @@
-# *HRFusion*
+
+# $\color{JungleGreen}\textit{\textbf{HRFusion}}$
+
+![Android](https://img.shields.io/badge/Android%20SDK-API%2025-yellow?logo=Android) 
+![Android](https://img.shields.io/badge/Build%20Tools%20-29.0.3-yellow?logo=Android) 
+![C++](https://img.shields.io/badge/C++-17-blue?logo=C++)
+![POCO](https://img.shields.io/badge/POCO-1.13.3-blueviolet)
+![cmake](https://img.shields.io/badge/cmake-3.10.2-green)
+![junit](https://img.shields.io/badge/junit-4.13-yellowgreen?logo=java)
+![Gradle](https://img.shields.io/badge/Gradle-6.1.1-orange?logo=Gradle) 
+
 *HRFusion is a small Android app, that navigates on "HR" SQLite database*.
 
 #### Motivations:
@@ -20,12 +30,15 @@ This one is produced by the utility [*"HRToSQLite"*](https://github.com/victorkr
 #### Built with:
 
 - Android Studio 4.0
-    - SDK (Build Tools 35)
+    - SDK (Build Tools 29.0.3)
     - NDK r26d
+    - Android Gradle Plugin 4.0.0
+    - Gradle 6.1.1
 - CMake (External Build) for C++ part
 - *HRFusion.so* is built with: 
     - cpp flags - *'-std=c++17 -frtti -fexceptions'*
-    - stl type - *'c++_shared'*
+
+
 
 #### POCO libs integration:
 
