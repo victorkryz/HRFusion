@@ -1,12 +1,4 @@
-/**
- * HRFusion
- *
- * @author Victor Kryzhanivskyi
- */
-
-
-#ifndef HRFUSION_PROCESSING_H
-#define HRFUSION_PROCESSING_H
+#pragma once
 
 #include "common.h"
 #include <Poco/Data/RecordSet.h>
@@ -77,7 +69,3 @@ T extractValue(const Poco::Dynamic::Var& var)
             ALOGE("%s", strMsg.c_str()); \
             simulateException(_env, strMsg, "victor/kryz/hrfusion/jni/ReflectionException"); }\
 
-
-
-
-#endif //HRFUSION_PROCESSING_H

@@ -1,12 +1,4 @@
-/**
- * HRFusion
- *
- * @author Victor Kryzhanivskyi
- */
-
-#ifndef HRFUSION_COMMON_H
-#define HRFUSION_COMMON_H
-
+#pragma once
 
 #include <jni.h>
 #include <android/log.h>
@@ -41,5 +33,3 @@ struct scope_t
     F f_;
     bool bEnclosed = false;
 };
-
-#endif //HRFUSION_COMMON_H
