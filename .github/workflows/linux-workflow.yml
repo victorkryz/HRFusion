@@ -1,4 +1,4 @@
-name: HRFusion build (debug version)
+name: HRFusion build
 
 on:
   workflow_dispatch:
@@ -9,10 +9,12 @@ jobs:
 
     strategy:
         matrix:
-          abi: [x86_64]
+          abi: [arm64-v8a, x86_64]
+          build_type: [Debug, Release]
 
     env:
       ANDROID_ABI: ${{ matrix.abi }}
+      BUILD_TYPE:  ${{ matrix.build_type }}
       ANDROID_PLATFORM: android-23
       ANDROID_NDK_HOME: /usr/local/lib/android/sdk/ndk/27.3.13750724
       POCO_VERSION: poco-1.14.2-release
@@ -36,7 +38,7 @@ jobs:
             -DANDROID_ABI=$ANDROID_ABI \
             -DANDROID_PLATFORM=$ANDROID_PLATFORM \
             -DANDROID_STL=c++_shared \
-            -DCMAKE_BUILD_TYPE=Debug \
+            -DCMAKE_BUILD_TYPE=${BUILD_TYPE} \
             -DCMAKE_INSTALL_PREFIX=$PWD/poco-install/$ANDROID_ABI \
             -DENABLE_TESTS=OFF \
             -DENABLE_SAMPLES=OFF \
@@ -65,5 +67,5 @@ jobs:
       - name: Make Gradle wrapper executable
         run: chmod +x ./gradlew
 
-      - name: Build Debug APK
-        run: ./gradlew :app:assembleDebug
+      - name: Build APK
+        run: ./gradlew :app:assemble${BUILD_TYPE}
