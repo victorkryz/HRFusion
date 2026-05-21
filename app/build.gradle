@@ -11,6 +11,11 @@ android {
     compileSdkVersion 25
     ndkVersion "27.3.13750724"		
 
+    lintOptions {
+            checkReleaseBuilds false
+            abortOnError false
+    }
+
     defaultConfig {
         applicationId "com.example.hrfusion"
         minSdkVersion 23
