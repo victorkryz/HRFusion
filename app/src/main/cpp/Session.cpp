@@ -1,8 +1,3 @@
-/**
- * HRFusion
- *
- * @author Victor Kryzhanivskyi
- */
 
 #include <Poco/File.h>
 #include <Poco/Data/RecordSet.h>
@@ -37,15 +32,15 @@ namespace Sqlt
 jfieldID getDbFileField(JNIEnv *env, jobject obj)
 {
     jclass c = jniCall<jclass>(env, [&]()->jclass
-                        {return env->GetObjectClass(obj);});
+                        {return env->GetObjectClass(obj);}, __func__);
     return jniCall<jfieldID>(env, [&]()->jfieldID
-                        {return env->GetFieldID(c,"strDbFile", "Ljava/lang/String;");});
+                        {return env->GetFieldID(c,"strDbFile", "Ljava/lang/String;");}, __func__);
 }
 
 std::string getDbFile(JNIEnv *env, jobject obj)
 {
     jstring jstr = jniCall<jstring>(env, [&]()->jstring
-        {return (jstring)env->GetObjectField(obj, getDbFileField(env, obj));});
+        {return (jstring)env->GetObjectField(obj, getDbFileField(env, obj));}, __func__);
 
     return fromJStr(env, jstr);
 }

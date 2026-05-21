@@ -1,44 +1,56 @@
 apply plugin: 'com.android.application'
 
-String APK_NAME = "HRFusion"
-int VERSION_CODE = 1
-String VERSION_NAME = "1.1"
+def APK_NAME = "HRFusion"
+def VERSION_CODE = 1
+def VERSION_NAME = "1.1"
+def androidAbi = (System.getenv("ANDROID_ABI") ?: "arm64-v8a").tokenize('/\\').last()
 
-project.archivesBaseName = APK_NAME + "-" + VERSION_NAME;
+project.archivesBaseName = "${APK_NAME}-${VERSION_NAME}"
 
 android {
     compileSdkVersion 25
-    buildToolsVersion '29.0.3'
+    ndkVersion "27.3.13750724"		
+
+    lintOptions {
+            checkReleaseBuilds false
+            abortOnError false
+    }
+
     defaultConfig {
-        applicationId "HRFusion"
+        applicationId "com.example.hrfusion"
         minSdkVersion 23
         targetSdkVersion 25
         versionCode VERSION_CODE
         versionName VERSION_NAME
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            abiFilters androidAbi
+        }
 
         externalNativeBuild {
             cmake {
                 cppFlags "-std=c++17 -frtti -fexceptions"
-                abiFilters 'x86_64', 'armeabi-v7a', 'x86', 'arm64-v8a'
-            }
-        }
-
-        ndk {
-            abiFilters 'x86_64', 'armeabi-v7a', 'x86', 'arm64-v8a'
+                arguments "-DCMAKE_PREFIX_PATH=${rootDir}/poco-install/${androidAbi}",
+                          "-DPOCO_INSTALL_PATH=${rootDir}/poco-install/${androidAbi}",
+                          "-DANDROID_STL=c++_shared"
+           }
         }
     }
 
     buildTypes {
-//        release {
-//            minifyEnabled false
-//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-//            applicationIdSuffix ".release"
-//        }
         debug {
             applicationIdSuffix ".debug"
         }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                    'proguard-rules.pro'
+        }
     }
+
     externalNativeBuild {
         cmake {
             path "CMakeLists.txt"
@@ -48,12 +60,15 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
+
     implementation 'com.android.support:appcompat-v7:25.0.1'
     implementation 'com.android.support:design:25.0.1'
     implementation 'com.android.support:support-v4:25.0.1'
     implementation 'com.android.support:recyclerview-v7:25.0.1'
+
     testImplementation 'junit:junit:4.13'
+
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2') {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
 }

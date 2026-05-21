@@ -1,9 +1,4 @@
-//
-// Created by Victor on 11/2/2016.
-//
-
-#ifndef HRFUSION_ENTITIES_H
-#define HRFUSION_ENTITIES_H
+#pragma once
 
 #include <string>
 #include <vector>
@@ -58,4 +53,3 @@ namespace Entities {
 
 }; // namespace Entities
 
-#endif //HRFUSION_ENTITIES_H

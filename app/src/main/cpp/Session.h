@@ -1,13 +1,4 @@
-/**
- * HRFusion
- *
- * @author Victor Kryzhanivskyi
- */
-
-
-#ifndef HRFUSION_SESSION_H
-#define HRFUSION_SESSION_H
-
+#pragma once
 
 #include "common.h"
 #include <string>
@@ -23,5 +14,3 @@ namespace Sqlt {
 }
 
 std::string getDbFile(JNIEnv *env, jobject obj);
-
-#endif //HRFUSION_SESSION_H

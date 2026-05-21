@@ -4,7 +4,7 @@
 ![Android](https://img.shields.io/badge/Android%20SDK-API%2025-yellow?logo=Android) 
 ![Android](https://img.shields.io/badge/Build%20Tools%20-29.0.3-yellow?logo=Android) 
 ![C++](https://img.shields.io/badge/C++-17-blue?logo=C++)
-![POCO](https://img.shields.io/badge/POCO-1.13.3-blueviolet)
+![POCO](https://img.shields.io/badge/POCO-1.14.2-blueviolet)
 ![cmake](https://img.shields.io/badge/cmake-3.10.2-green)
 ![junit](https://img.shields.io/badge/junit-4.13-yellowgreen?logo=java)
 ![Gradle](https://img.shields.io/badge/Gradle-6.1.1-orange?logo=Gradle) 
@@ -27,64 +27,26 @@ As a database, there's used a reflection of Oracle Database 'HR' sample schema (
 This one is produced by the utility [*"HRToSQLite"*](https://github.com/victorkryz/HRtoSQLite).
 
 
-#### Built with:
+## Build Configuration
 
-- Android Studio 4.0
-    - SDK (Build Tools 29.0.3)
-    - NDK r26d
-    - Android Gradle Plugin 4.0.0
-    - Gradle 6.1.1
-- CMake (External Build) for C++ part
-- *HRFusion.so* is built with: 
-    - cpp flags - *'-std=c++17 -frtti -fexceptions'*
+The project uses a mixed Java/C++ Android build configuration based on:
 
+- Android SDK Build Tools 29.0.3
+- Android NDK r26d
+- Android Gradle Plugin 4.0.0
+- Gradle 6.1.1
+- CMake External Native Build for the C++/JNI part
 
+The native C++ layer is built with CMake and integrated into the Android application through Android Gradle Plugin external native build support.
 
-#### POCO libs integration:
+The reference GitHub Actions workflow demonstrates:
+- Android SDK/NDK environment setup
+- POCO cross-compilation for Android
+- JNI/C++ integration with Android Gradle build
+- APK build execution
 
-This project uses POCO LIBS 1.13.3.
-([Download | POCO C++ Libraries ](https://github.com/pocoproject/poco))
+See the [GitHub Actions workflow](.github/workflows/linux-workflow.yml) configuration for the complete automated build scenario.
 
-To make it buildable, do the next steps:
-
- - copy POCO LIBS headers under directory 'app/src/main/cpp/include':
- ```
-  -- Poco
-    |-- Data
-    |   -- SQLite
-    |-- Dynamic
-    |    -- Util
-    |-- ASCIIEncoding.h
-    |-- AbstractCache.h
-    |-- AbstractDelegate.h
-    |-- ...
- ```
-
- - copy POCO libraries built for abi types 'armeabi', 'x86_64', etc.
-   under directory 'app/src/main/jniLibs' respectively:
-
-       ```
-       .
-       |-- armeabi
-       |   |-- libPocoData.so
-       |   |-- libPocoDataSQLite.so
-       |   |-- libPocoDataSQLited.so
-       |   |-- libPocoDatad.so
-       |   |-- libPocoFoundation.so
-       |   |-- libPocoFoundationd.so
-       |   |-- libPocoJSON.so
-       |   |-- libPocoJSONd.so
-       |   |-- libPocoUtil.so
-       |   |-- libPocoUtild.so
-       |   |-- libPocoXML.so
-       |   |-- libPocoXMLd.so
-       `-- x86_64
-           |-- libPocoData.so
-           |-- libPocoDataSQLite.so
-           |-- ...
-
-       ```
-    
 #### Testing:
 
  - JUnit tests are provided for all jni-calls against to HRFusion.so;

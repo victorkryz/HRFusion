@@ -1,11 +1,4 @@
-/**
- * HRFusion
- *
- * @author Victor Kryzhanivskyi
- */
-
-#ifndef HRFUSION_TOOLS_H
-#define HRFUSION_TOOLS_H
+#pragma once
 
 #include "common.h"
 #include "Poco/Format.h"
@@ -26,5 +19,3 @@ template <> inline std::string toString(const std::string& src) {
 
 void simulateException(JNIEnv* env, const std::string& msg, const char* exceptionClass = nullptr);
 
-
-#endif //HRFUSION_TOOLS_H

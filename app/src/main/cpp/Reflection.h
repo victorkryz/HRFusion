@@ -1,17 +1,11 @@
-/**
- * HRFusion
- *
- * @author Victor Kryzhanivskyi
- */
+#pragma once
 
 //& @formatter:off
-
-#ifndef HRFUSION_REFLECTION_H
-#define HRFUSION_REFLECTION_H
 
 #include "common.h"
 #include "Entities.h"
 #include "Tools.h"
+
 
 class ReflectionException : public std::runtime_error
 {
@@ -21,7 +15,7 @@ public:
 };
 
 template<typename T>
-inline T jniCall(JNIEnv* env, std::function<T(void)> fnc, std::string outerFuncName = __func__ )
+inline T jniCall(JNIEnv* env, std::function<T(void)> fnc, std::string outerFuncName)
 {
     T res = fnc();
     jboolean bExcept = env->ExceptionCheck();
@@ -67,7 +61,7 @@ class FieldAggregatorBase
 
         jfieldID getFieldId(const char *fieldName ) {
             return jniCall<jfieldID>(env_, [&]()->jfieldID
-            {return env_->GetFieldID(class_, fieldName, sign_);});
+            {return env_->GetFieldID(class_, fieldName, sign_);}, __func__);
         }
 
     protected:
@@ -105,10 +99,10 @@ class FieldAggregator<std::string> : public FieldAggregatorBase
         void setField(const char *fieldName, const std::string &value)
         {
             auto jstrValue = jniCall<jstring>(env_, [&]()->jstring {
-                                return env_->NewStringUTF(value.c_str());});
+                                return env_->NewStringUTF(value.c_str());}, __func__);
             jniCall<bool>(env_, [&]()->bool {
                                 env_->SetObjectField(jobj_, getFieldId(fieldName), jstrValue);
-                                return true;});
+                                return true;}, __func__);
         }
 };
 
@@ -127,7 +121,7 @@ class FieldAggregator<int> : public FieldAggregatorBase
         {
             jniCall<bool>(env_, [&]()->bool {
                                 env_->SetIntField(jobj_, getFieldId(fieldName), value);
-                                return true;});
+                                return true;}, __func__);
         }
 };
 
@@ -145,7 +139,7 @@ class FieldAggregator<float> : public FieldAggregatorBase
         void setField(const char *fieldName, const float& value) {
             jniCall<bool>(env_, [&]()->bool {
                                 env_->SetFloatField(jobj_, getFieldId(fieldName), value);
-                                return true;});
+                                return true;}, __func__);
         }
 };
 
@@ -163,7 +157,7 @@ class FieldAggregator<double> : public FieldAggregatorBase
         void setField(const char *fieldName, const double& value) {
             jniCall<bool>(env_, [&]()->bool {
                     env_->SetDoubleField(jobj_, getFieldId(fieldName), value);
-                    return true;});
+                    return true;}, __func__);
         }
 };
 
@@ -181,7 +175,7 @@ class FieldAggregator<bool> : public FieldAggregatorBase
         void setField(const char *fieldName, const bool& value) {
             jniCall<bool>(env_, [&]()->bool {
                     env_->SetBooleanField(jobj_, getFieldId(fieldName), value);
-                    return true;});
+                    return true;}, __func__);
         }
 };
 
@@ -317,5 +311,3 @@ class  Reflector<Entities::JobStage> : public ReflectorBase
 
 
 //& @formatter:on
-
-#endif //HRFUSION_REFLECTION_H

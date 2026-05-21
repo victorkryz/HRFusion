@@ -1,5 +1,6 @@
 *.iml
 .gradle
+#gradle
 /local.properties
 .idea
 .vscode
@@ -32,7 +33,7 @@ CTestTestfile.cmake
 .mtj.tmp/
 
 # Package Files #
-*.jar
+#*.jar
 *.war
 *.ear
 

@@ -1,8 +1,3 @@
-/**
- * HRFusion
- *
- * @author Victor Kryzhanivskyi
- */
 
 //& @formatter:off
 
@@ -31,13 +26,13 @@ jobject ReflectorBase::createInstanceByHrItemConstructor(const Entities::HrItem<
     const auto clazz = getEntClass();
     auto constr = jniCall<jmethodID>(env_, [&]()->jmethodID
                             {return env_->GetMethodID(clazz, constrMethodName,
-                                    "(Ljava/lang/String;Ljava/lang/String;)V");});
+                                    "(Ljava/lang/String;Ljava/lang/String;)V");}, __func__);
     auto jstrId = jniCall<jstring>(env_, [&]()->jstring
-                            {return env_->NewStringUTF(toString<T>(item.id).c_str());});
+                            {return env_->NewStringUTF(toString<T>(item.id).c_str());}, __func__);
     auto jstrName = jniCall<jstring>(env_, [&]()->jstring
-                            {return env_->NewStringUTF(item.name.c_str());});
+                            {return env_->NewStringUTF(item.name.c_str());}, __func__);
     return jniCall<jobject>(env_, [&]()->jobject
-                            {return env_->NewObject(clazz, constr, jstrId, jstrName);});
+                            {return env_->NewObject(clazz, constr, jstrId, jstrName);}, __func__);
 }
 
 
@@ -65,11 +60,11 @@ jobject Reflector<Location>::reflectEntity(const Location& item)
 
         auto constr = jniCall<jmethodID>(env_, [&]()->jmethodID
                             {return env_->GetMethodID(clazz, constrMethodName,
-                                                   "(Ljava/lang/String;)V");});
+                                                   "(Ljava/lang/String;)V");}, __func__);
         auto jstrId = jniCall<jstring>(env_, [&]()->jstring
-                            {return env_->NewStringUTF(toString<int>(item.id).c_str());});
+                            {return env_->NewStringUTF(toString<int>(item.id).c_str());}, __func__);
         auto obj = jniCall<jobject>(env_, [&]()->jobject
-                            {return env_->NewObject(clazz, constr, jstrId);});
+                            {return env_->NewObject(clazz, constr, jstrId);}, __func__);
 
         FieldAggregator<std::string> f(env_, clazz, obj);
         f.setField("name", item.name);
@@ -200,7 +195,7 @@ void ArrayBuilder<T>::fillElements(jobjectArray jArr, const entities_t& items)
         jobject obj = reflector_.reflectEntity(item);
         jniCall<bool>(env, [&]()->bool
                             {env->SetObjectArrayElement(jArr, index++, obj);
-                            return true;});
+                            return true;}, __func__);
     }
 }
 

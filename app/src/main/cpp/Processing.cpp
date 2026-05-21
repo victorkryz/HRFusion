@@ -1,8 +1,3 @@
-/**
- * HRFusion
- *
- * @author Victor Kryzhanivskyi
- */
 
 #include "common.h"
 #include "Tools.h"
